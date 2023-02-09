@@ -66,17 +66,37 @@ public class LoginPageTests extends BaseTest {
     }
 
     @Test
-    public void inValidLoginTest() {
+    public void invalidUserNameTest() {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 
-        loginPage.enterUserName(loginDetails.getJSONObject("loginDetails").getString("username"))
-                .enterPassword(loginDetails.getJSONObject("loginDetails").getString("password"))
+        loginPage.enterUserName(loginDetails.getJSONObject("InvalidUserName").getString("username"))
+                .enterPassword(loginDetails.getJSONObject("InvalidUserName").getString("password"))
                 .clickLoginBtn()
-                .assertErrorTextOnInvalidUsrnmPassword(loginDetails.getJSONObject("errorTexts").getString("invalidUsernamePassword"));
+                .assertErrorTextOnInvalidUsrnmPassword(loginDetails.getJSONObject("loginErrorTexts").getString("invalidUsernamePassword"));
+    }
+
+    @Test
+    public void invalidPasswordTest() {
+
+        loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
+
+        loginPage.enterUserName(loginDetails.getJSONObject("inValidPassword").getString("username"))
+                .enterPassword(loginDetails.getJSONObject("inValidPassword").getString("password"))
+                .clickLoginBtn()
+                .assertErrorTextOnInvalidUsrnmPassword(loginDetails.getJSONObject("loginErrorTexts").getString("invalidUsernamePassword"));
+    }
+
+    @Test
+    public void lockedOutUserTest() {
+
+        loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
+
+        loginPage.enterUserName(loginDetails.getJSONObject("lockedOutUser").getString("username"))
+                .enterPassword(loginDetails.getJSONObject("lockedOutUser").getString("password"))
+                .clickLoginBtn().assertLockedOutUserError(loginDetails.getJSONObject("loginErrorTexts").getString("lockedOutUser"));
 
 
     }
-
 
 }

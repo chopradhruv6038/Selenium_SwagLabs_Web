@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="tests">
 
     <listeners>
         <listener class-name="Org.SwagLabs.Listeners.TestListener"/>
     </listeners>
 
-    <test name="Swag Labs Login Tests">
+    <test name="Swag Labs Login Tests on chrome" parallel="methods">
 
         <parameter name="browser" value="chrome"/>
 
         <classes>
+            <class name="Org.SwagLabs.Tests.LoginPageTests">
 
-            <class name="Org.SwagLabs.Tests.LoginPageTests"/>
+                <methods>
 
+                    <include name="lockedOutUserTest"/>
+
+                </methods>
+
+            </class>
         </classes>
 
     </test>
+
+
+    <!--   <test name="Swag Labs Login Tests on firefox" parallel="methods">
+
+           <parameter name="browser" value="firefox"/>
+
+           <classes>
+               <class name="Org.SwagLabs.Tests.LoginPageTests"/>
+           </classes>
+
+       </test>-->
+
 </suite>

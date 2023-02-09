@@ -17,14 +17,14 @@ public class LoginPage extends BasePage {
     By passwordFld = By.cssSelector("#password");
     By loginBtn = By.xpath("//input[@class='submit-button btn_action']");
     By invalidUserNamePasswordError = By.xpath("//h3[@data-test='error']");
+    By lockedOutUserError = By.xpath("//h3[@data-test='error']");
 
 
     //Methods: user actions
 
-    public void swagLabsUrl(String text){
+    public void swagLabsUrl(String text) {
 
         loadUrl(text);
-
 
 
     }
@@ -51,25 +51,43 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public String getErrorTextForInvalidUsrnmPasswd(){
+    public String getErrorTextForInvalidUsrnmPasswd() {
 
         return wait.until(ExpectedConditions.visibilityOfElementLocated(invalidUserNamePasswordError)).getText();
     }
 
-    public String expectedTextForInvalidUserNamePasswd(String text){
+    public String expectedTextForInvalidUserNamePasswd(String text) {
 
         return text;
 
     }
 
-    public void assertErrorTextOnInvalidUsrnmPassword(String text){
+    public void assertErrorTextOnInvalidUsrnmPassword(String text) {
 
         Assert.assertEquals(getErrorTextForInvalidUsrnmPasswd(), expectedTextForInvalidUserNamePasswd(text));
 
-       System.out.println("Actual error for invalid usernamePassword : " + getErrorTextForInvalidUsrnmPasswd() + "\nExpected error for invalid usernamePassword : " +  expectedTextForInvalidUserNamePasswd(text) );
+        System.out.println("Actual error for invalid usernamePassword : " + getErrorTextForInvalidUsrnmPasswd() + "\nExpected error for invalid usernamePassword : " + expectedTextForInvalidUserNamePasswd(text));
 
     }
 
+    public String ActualLockedOutUserError() {
 
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(lockedOutUserError)).getText();
+    }
+
+    public String expectedLockedOutUserError(String text) {
+
+        return text;
+
+    }
+
+    public LoginPage assertLockedOutUserError(String text) {
+
+        Assert.assertEquals(ActualLockedOutUserError(), expectedLockedOutUserError(text));
+
+        System.out.println("Actual error for locked out user : "  + ActualLockedOutUserError() + "\nExpected error for locked out user : " + expectedLockedOutUserError(text));
+
+        return this;
+    }
 
 }
