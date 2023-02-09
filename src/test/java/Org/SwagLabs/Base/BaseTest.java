@@ -42,23 +42,25 @@ public class BaseTest {
 
         if (result.getStatus() == ITestResult.FAILURE) {
 
-            File destFile = new File("src" + File.separator + browser + File.separator
-                    + result.getTestClass().getRealClass().getSimpleName() + "_" +
+            File destFile = new File("scr" + File.separator + browser + File.separator +
+                    result.getTestClass().getRealClass().getSimpleName() + "_" +
                     result.getMethod().getMethodName() + ".png");
 
             getScreenshot(destFile);
+
+
         }
-
         getDriver().quit();
-
     }
 
-    public void getScreenshot(File destFIle) throws IOException {
+
+    public void getScreenshot(File destFile) throws IOException {
 
         TakesScreenshot takesScreenshot = (TakesScreenshot) getDriver();
-        File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(src, destFIle);
+        File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 
+        FileUtils.copyFile(srcFile, destFile);
     }
+
 
 }

@@ -61,18 +61,19 @@ public class LoginPageTests extends BaseTest {
 
         loginPage = new LoginPage(getDriver());
 
-        System.out.println("**** Method Name: " + m.getName() + " ****");
-
+        System.out.println("\n**** Method Name: " + m.getName() + " ****\n");
 
     }
 
     @Test
-    public void validLoginTest() {
+    public void inValidLoginTest() {
 
-      loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
+        loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 
-
-
+        loginPage.enterUserName(loginDetails.getJSONObject("loginDetails").getString("username"))
+                .enterPassword(loginDetails.getJSONObject("loginDetails").getString("password"))
+                .clickLoginBtn()
+                .assertErrorTextOnInvalidUsrnmPassword(loginDetails.getJSONObject("errorTexts").getString("invalidUsernamePassword"));
 
 
     }

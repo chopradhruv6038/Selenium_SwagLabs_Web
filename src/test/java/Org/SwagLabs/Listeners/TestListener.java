@@ -8,7 +8,7 @@ import java.io.StringWriter;
 
 public class TestListener implements ITestListener {
 
-    public void onFailure(ITestResult result){
+    public void onTestFailure(ITestResult result){
 
         if (result.getThrowable() != null){
 

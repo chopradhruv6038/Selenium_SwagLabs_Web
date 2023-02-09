@@ -18,10 +18,9 @@ public class BasePage {
 
     }
 
-    public void swagLabsUrl(String endpoint) {
+    public void loadUrl(String endpoint){
 
-        driver.get("https://www.saucedemo.com/" + endpoint);
-
+        driver.get(endpoint);
     }
 
 }

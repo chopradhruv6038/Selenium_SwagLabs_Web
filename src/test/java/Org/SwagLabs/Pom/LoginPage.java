@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class LoginPage extends BasePage {
 
@@ -12,16 +13,19 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    By userNameFld = By.cssSelector("#Username");
-    By passwordFld = By.cssSelector("#Password");
+    By userNameFld = By.cssSelector("#user-name");
+    By passwordFld = By.cssSelector("#password");
     By loginBtn = By.xpath("//input[@class='submit-button btn_action']");
+    By invalidUserNamePasswordError = By.xpath("//h3[@data-test='error']");
 
 
     //Methods: user actions
 
-    public String loadUrl(String text){
+    public void swagLabsUrl(String text){
 
-        return text;
+        loadUrl(text);
+
+
 
     }
 
@@ -46,6 +50,26 @@ public class LoginPage extends BasePage {
 
         return this;
     }
+
+    public String getErrorTextForInvalidUsrnmPasswd(){
+
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(invalidUserNamePasswordError)).getText();
+    }
+
+    public String expectedTextForInvalidUserNamePasswd(String text){
+
+        return text;
+
+    }
+
+    public void assertErrorTextOnInvalidUsrnmPassword(String text){
+
+        Assert.assertEquals(getErrorTextForInvalidUsrnmPasswd(), expectedTextForInvalidUserNamePasswd(text));
+
+       System.out.println("Actual error for invalid usernamePassword : " + getErrorTextForInvalidUsrnmPasswd() + "\nExpected error for invalid usernamePassword : " +  expectedTextForInvalidUserNamePasswd(text) );
+
+    }
+
 
 
 }
