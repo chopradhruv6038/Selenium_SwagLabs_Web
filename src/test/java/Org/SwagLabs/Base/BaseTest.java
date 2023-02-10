@@ -1,6 +1,7 @@
 package Org.SwagLabs.Base;
 
 import Org.SwagLabs.Factory.DriverManager;
+import Org.SwagLabs.Utils.TestUtils;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -14,6 +15,10 @@ import java.io.IOException;
 public class BaseTest {
 
     protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+
+
+    protected static String dateTime; //Date time global variable.
 
     public void setDriver(WebDriver driver) {
 
@@ -31,6 +36,7 @@ public class BaseTest {
     @BeforeMethod
     public void startDriver(String browser) {
 
+
         setDriver(new DriverManager().initializeDriver(browser));
 
 
@@ -42,12 +48,11 @@ public class BaseTest {
 
         if (result.getStatus() == ITestResult.FAILURE) {
 
-            File destFile = new File("scr" + File.separator + browser + File.separator +
+            File destFile = new File("Screenshots" + File.separator + browser + File.separator + getDateTimes() + "_" +
                     result.getTestClass().getRealClass().getSimpleName() + "_" +
                     result.getMethod().getMethodName() + ".png");
 
             getScreenshot(destFile);
-
 
         }
         getDriver().quit();
@@ -60,6 +65,20 @@ public class BaseTest {
         File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 
         FileUtils.copyFile(srcFile, destFile);
+    }
+
+
+    public String getDateTimes(){
+
+        return dateTime;
+
+    }
+
+    @BeforeTest
+    public void beforeTest(){
+
+        TestUtils testUtils = new TestUtils(); //test utils object to use getDateTime value
+        dateTime = testUtils.getDateTime(); //using test utils getDateTime method to date time variable.
     }
 
 

@@ -2,6 +2,7 @@ package Org.SwagLabs.Tests;
 
 import Org.SwagLabs.Base.BaseTest;
 import Org.SwagLabs.Pom.LoginPage;
+import Org.SwagLabs.Pom.ProductsPage;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.annotations.BeforeClass;
@@ -16,6 +17,7 @@ import java.util.Properties;
 public class LoginPageTests extends BaseTest {
 
     LoginPage loginPage;
+    ProductsPage productsPage;
     InputStream datais;
     InputStream configData;
     JSONObject loginDetails;
@@ -60,8 +62,11 @@ public class LoginPageTests extends BaseTest {
     public void beforeMethod(Method m) {
 
         loginPage = new LoginPage(getDriver());
+        productsPage = new ProductsPage(getDriver());
 
-        System.out.println("\n**** Method Name: " + m.getName() + " ****\n");
+        System.out.println("\n**** Login Page Tests, Method Name: " + m.getName() + " ****");
+
+        System.out.println("\nCurrent Thread ID Login Page Tests : " + Thread.currentThread().getId() + "\n");
 
     }
 
@@ -70,8 +75,8 @@ public class LoginPageTests extends BaseTest {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 
-        loginPage.enterUserName(loginDetails.getJSONObject("InvalidUserName").getString("username"))
-                .enterPassword(loginDetails.getJSONObject("InvalidUserName").getString("password"))
+        loginPage.enterUserName(props.getProperty("invalidUserName"))
+                .enterPassword(props.getProperty("validPassword"))
                 .clickLoginBtn()
                 .assertErrorTextOnInvalidUsrnmPassword(loginDetails.getJSONObject("loginErrorTexts").getString("invalidUsernamePassword"));
     }
@@ -81,8 +86,8 @@ public class LoginPageTests extends BaseTest {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 
-        loginPage.enterUserName(loginDetails.getJSONObject("inValidPassword").getString("username"))
-                .enterPassword(loginDetails.getJSONObject("inValidPassword").getString("password"))
+        loginPage.enterUserName(props.getProperty("validUserName"))
+                .enterPassword(props.getProperty("invalidPassword"))
                 .clickLoginBtn()
                 .assertErrorTextOnInvalidUsrnmPassword(loginDetails.getJSONObject("loginErrorTexts").getString("invalidUsernamePassword"));
     }
@@ -92,9 +97,23 @@ public class LoginPageTests extends BaseTest {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 
-        loginPage.enterUserName(loginDetails.getJSONObject("lockedOutUser").getString("username"))
-                .enterPassword(loginDetails.getJSONObject("lockedOutUser").getString("password"))
+        loginPage.enterUserName(props.getProperty("lockedOutUser"))
+                .enterPassword(props.getProperty("validPassword"))
                 .clickLoginBtn().assertLockedOutUserError(loginDetails.getJSONObject("loginErrorTexts").getString("lockedOutUser"));
+
+
+    }
+
+    @Test
+    public void successfulLoginTest() {
+
+        loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
+
+        loginPage.enterUserName(props.getProperty("validUserName"))
+                .enterPassword(props.getProperty("validPassword"))
+                .clickLoginBtn();
+
+        productsPage.assertProductPgTitle(loginDetails.getJSONObject("productPageTexts").getString("expectedPgTitle"));
 
 
     }

@@ -1,22 +1,10 @@
 {
-  "InvalidUserName": {
-    "username": "invalid",
-    "password": "secret_sauce"
-  },
-  "inValidPassword": {
-    "username": "standard_user",
-    "password": "invalid"
-  },
-  "validLoginDetails": {
-    "username": "standard_user",
-    "password": "secret_sauce"
-  },
-  "lockedOutUser": {
-    "username": "locked_out_user",
-    "password": "secret_sauce"
-  },
   "loginErrorTexts": {
     "invalidUsernamePassword": "Epic sadface: Username and password do not match any user in this service",
     "lockedOutUser": "Epic sadface: Sorry, this user has been locked out."
+  },
+  "productPageTexts": {
+    "expectedPgTitle": "PRODUCTSss"
+
   }
 }

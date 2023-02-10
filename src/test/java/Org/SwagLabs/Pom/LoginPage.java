@@ -31,6 +31,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage enterUserName(String username) {
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(userNameFld)).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(userNameFld)).sendKeys(username);
 
         return this;
@@ -38,6 +39,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage enterPassword(String password) {
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFld)).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFld)).sendKeys(password);
 
         return this;
@@ -85,7 +87,7 @@ public class LoginPage extends BasePage {
 
         Assert.assertEquals(ActualLockedOutUserError(), expectedLockedOutUserError(text));
 
-        System.out.println("Actual error for locked out user : "  + ActualLockedOutUserError() + "\nExpected error for locked out user : " + expectedLockedOutUserError(text));
+        System.out.println("Actual error for locked out user : " + ActualLockedOutUserError() + "\nExpected error for locked out user : " + expectedLockedOutUserError(text));
 
         return this;
     }
