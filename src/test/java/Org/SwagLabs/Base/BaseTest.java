@@ -7,6 +7,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.io.File;
@@ -46,15 +47,22 @@ public class BaseTest {
     @AfterMethod
     public void quitDriver(ITestResult result, String browser) throws IOException {
 
+
         if (result.getStatus() == ITestResult.FAILURE) {
 
-            File destFile = new File("Screenshots" + File.separator + browser + File.separator + getDateTimes() + "_" +
-                    result.getTestClass().getRealClass().getSimpleName() + "_" +
+            File destFile = new File("Screenshots" + File.separator + browser + "_" + getDateTimes() + File.separator +
+                    result.getTestClass().getRealClass().getSimpleName() + File.separator +
                     result.getMethod().getMethodName() + ".png");
 
             getScreenshot(destFile);
 
+
+
+
+
         }
+
+
         getDriver().quit();
     }
 
@@ -65,6 +73,17 @@ public class BaseTest {
         File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 
         FileUtils.copyFile(srcFile, destFile);
+
+
+
+//Attaching Snapshot to test ng report left out.
+
+       // String completeImagePath = System.getProperty("user.dir") + File.separator + destFile;
+
+        //Reporter.log("Hello error");
+        //Reporter.log("<a href='"+ completeImagePath + "'> <img src='"+ completeImagePath + "' height='400' width='400'/> </a>");
+
+
     }
 
 

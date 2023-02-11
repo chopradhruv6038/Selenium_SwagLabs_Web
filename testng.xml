@@ -7,9 +7,10 @@
         <listener class-name="Org.SwagLabs.Listeners.TestListener"/>
     </listeners>
 
-    <test name="Swag Labs Testing on chrome browser">
+    <test name="Swag Labs Testing on chrome browser, ENV: Staging">
 
         <parameter name="browser" value="chrome"/>
+        <parameter name="environment" value="Staging"/>
 
         <classes>
             <class name="Org.SwagLabs.Tests.LoginPageTests">
@@ -20,15 +21,15 @@
         </classes>
     </test>
 
-<!--
-       <test name="Swag Labs Testing on firefox browser">
+       <test name="Swag Labs Testing on firefox browser, ENV: QA">
 
            <parameter name="browser" value="firefox"/>
+           <parameter name="environment" value="QA"/>
 
            <classes>
                <class name="Org.SwagLabs.Tests.LoginPageTests"/>
            </classes>
 
-       </test>-->
+       </test>
 
 </suite>

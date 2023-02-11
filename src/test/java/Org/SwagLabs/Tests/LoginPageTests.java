@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -19,13 +20,15 @@ public class LoginPageTests extends BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     InputStream datais;
-    InputStream configData;
+    InputStream QAconfigData;
+    InputStream StagingConfigData;
     JSONObject loginDetails;
     Properties props;
 
 
+    @Parameters({"environment"})
     @BeforeClass
-    public void beforeClass() throws IOException {
+    public void beforeClass(String environment) throws Exception {
 
         try {
             String userdata = "Data/userData.json";
@@ -45,15 +48,40 @@ public class LoginPageTests extends BaseTest {
             }
         }
 
-        //Reading config.properties
+        //Reading config.properties of multiple env with switch
 
-        props = new Properties();
+        switch (environment){
 
-        String config = "Data/config.properties";
+            case "QA":
 
-        configData = getClass().getClassLoader().getResourceAsStream(config);
+                props = new Properties();
 
-        props.load(configData);
+                String config = "Data/QA_config.properties";
+
+                QAconfigData = getClass().getClassLoader().getResourceAsStream(config);
+
+                props.load(QAconfigData);
+
+                break;
+
+            case "Staging":
+
+               props = new Properties();
+
+               String stagingData = "Data/Staging_config.properties";
+
+               StagingConfigData = getClass().getClassLoader().getResourceAsStream(stagingData);
+
+               props.load(StagingConfigData);
+
+                break;
+
+            default: throw new Exception();
+
+
+        }
+
+
 
 
     }
