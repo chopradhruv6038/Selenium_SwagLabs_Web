@@ -42,6 +42,8 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFld)).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFld)).sendKeys(password);
 
+
+
         return this;
     }
 

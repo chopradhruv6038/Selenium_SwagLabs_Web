@@ -20,7 +20,7 @@
             </class>
         </classes>
     </test>
-
+<!--
        <test name="Swag Labs Testing on firefox browser, ENV: QA">
 
            <parameter name="browser" value="firefox"/>
@@ -30,6 +30,6 @@
                <class name="Org.SwagLabs.Tests.LoginPageTests"/>
            </classes>
 
-       </test>
+       </test>-->
 
 </suite>

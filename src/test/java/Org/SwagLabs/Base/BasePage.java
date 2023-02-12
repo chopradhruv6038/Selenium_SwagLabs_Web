@@ -10,7 +10,7 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) { //this constructor will be used to initialize the web driver object in child classes that will extend the basePage class.
 
         this.driver = driver;
 

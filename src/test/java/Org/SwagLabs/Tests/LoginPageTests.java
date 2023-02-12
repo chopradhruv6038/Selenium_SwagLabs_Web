@@ -96,6 +96,8 @@ public class LoginPageTests extends BaseTest {
 
         System.out.println("\nCurrent Thread ID Login Page Tests : " + Thread.currentThread().getId() + "\n");
 
+        System.out.println("Driver : " + getDriver());
+
     }
 
     @Test
