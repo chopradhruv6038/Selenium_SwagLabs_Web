@@ -104,6 +104,7 @@ public class LoginPageTests extends BaseTest {
     public void invalidUserNameTest() {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
+        
 
         loginPage.enterUserName(props.getProperty("invalidUserName"))
                 .enterPassword(props.getProperty("validPassword"))

@@ -1,6 +1,7 @@
 package Org.SwagLabs.Pom;
 
 import Org.SwagLabs.Base.BasePage;
+import Org.SwagLabs.Components.MyHeader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -9,8 +10,11 @@ import org.testng.Assert;
 
 public class LoginPage extends BasePage {
 
+    protected MyHeader header;
+
     public LoginPage(WebDriver driver) {
         super(driver);
+        header = new MyHeader(driver);
     }
 
     By userNameFld = By.cssSelector("#user-name");
@@ -21,6 +25,15 @@ public class LoginPage extends BasePage {
 
 
     //Methods: user actions
+
+
+    public void cpomponentCheck(){
+
+        header.ClickLasan();
+        header.enterLasan("hello");
+
+    }
+
 
     public void swagLabsUrl(String text) {
 
