@@ -3,6 +3,7 @@ package Org.SwagLabs.Tests;
 import Org.SwagLabs.Base.BaseTest;
 import Org.SwagLabs.Pom.LoginPage;
 import Org.SwagLabs.Pom.ProductsPage;
+import Org.SwagLabs.Pom.YourCartPage;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.annotations.BeforeClass;
@@ -19,6 +20,7 @@ public class LoginPageTests extends BaseTest {
 
     LoginPage loginPage;
     ProductsPage productsPage;
+    YourCartPage yourCartPage;
     InputStream datais;
     InputStream QAconfigData;
     InputStream StagingConfigData;
@@ -91,6 +93,7 @@ public class LoginPageTests extends BaseTest {
 
         loginPage = new LoginPage(getDriver());
         productsPage = new ProductsPage(getDriver());
+        yourCartPage = new YourCartPage(getDriver());
 
         System.out.println("\n**** Login Page Tests, Method Name: " + m.getName() + " ****");
 
@@ -101,10 +104,10 @@ public class LoginPageTests extends BaseTest {
     }
 
     @Test
-    public void invalidUserNameTest() {
+    public synchronized void invalidUserNameTest() {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
-        
+
 
         loginPage.enterUserName(props.getProperty("invalidUserName"))
                 .enterPassword(props.getProperty("validPassword"))
@@ -113,7 +116,7 @@ public class LoginPageTests extends BaseTest {
     }
 
     @Test
-    public void invalidPasswordTest() {
+    public synchronized void invalidPasswordTest() {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 
@@ -124,7 +127,7 @@ public class LoginPageTests extends BaseTest {
     }
 
     @Test
-    public void lockedOutUserTest() {
+    public synchronized void lockedOutUserTest() {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 
@@ -136,7 +139,7 @@ public class LoginPageTests extends BaseTest {
     }
 
     @Test
-    public void successfulLoginTest() {
+    public synchronized void successfulLoginTest() {
 
         loginPage.swagLabsUrl(props.getProperty("swagLabsUrl"));
 

@@ -13,11 +13,13 @@
         <parameter name="environment" value="Staging"/>
 
         <classes>
-            <class name="Org.SwagLabs.Tests.LoginPageTests">
+           <!-- <class name="Org.SwagLabs.Tests.LoginPageTests">
                 <methods>
                     <include name="successfulLoginTest"/>
                 </methods>
-            </class>
+            </class>-->
+
+            <class name="Org.SwagLabs.Tests.HappyFlowTestsSLBandSLBL"/>
         </classes>
     </test>
 <!--
