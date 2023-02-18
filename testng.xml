@@ -13,16 +13,15 @@
         <parameter name="environment" value="Staging"/>
 
         <classes>
-           <!-- <class name="Org.SwagLabs.Tests.LoginPageTests">
-                <methods>
+            <class name="Org.SwagLabs.Tests.LoginPageTests">
+               <!-- <methods>
                     <include name="successfulLoginTest"/>
-                </methods>
-            </class>-->
+                </methods>-->
+            </class>
 
             <class name="Org.SwagLabs.Tests.HappyFlowTestsSLBandSLBL"/>
         </classes>
     </test>
-<!--
        <test name="Swag Labs Testing on firefox browser, ENV: QA">
 
            <parameter name="browser" value="firefox"/>
@@ -32,6 +31,6 @@
                <class name="Org.SwagLabs.Tests.LoginPageTests"/>
            </classes>
 
-       </test>-->
+       </test>
 
 </suite>

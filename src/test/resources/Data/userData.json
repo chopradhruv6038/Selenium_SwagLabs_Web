@@ -6,5 +6,10 @@
   "productPageTexts": {
     "expectedPgTitle": "PRODUCTS"
 
+  },
+
+  "checkoutCompleteTexts": {
+    "ThanksMessage": "THANK YOU FOR YOUR ORDER"
   }
+
 }
