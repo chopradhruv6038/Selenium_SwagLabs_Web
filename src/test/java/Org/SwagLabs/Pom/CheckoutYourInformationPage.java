@@ -17,6 +17,7 @@ public class CheckoutYourInformationPage extends BasePage {
     By firstNameFld = By.cssSelector("#first-name");
     By lastNameFld = By.cssSelector("#last-name");
     By postalCodeFld = By.cssSelector("#postal-code");
+    By continueBtn = By.cssSelector("#continue");
 
 
 //methods:
@@ -57,12 +58,18 @@ public class CheckoutYourInformationPage extends BasePage {
 
     public CheckoutYourInformationPage enterUserYourInformation(yourInformationCheckout yourinformationcheckout) {
 
-         enterFirstName(yourinformationcheckout.getEnterFirstName());
+        enterFirstName(yourinformationcheckout.getEnterFirstName());
         enterLastName(yourinformationcheckout.getEnterLastName());
         enterPostalCode(yourinformationcheckout.getEnterPostalCode());
 
         return this;
 
+    }
+
+    public CheckoutOverviewPage clickContinueBtn() {
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueBtn)).click();
+        return new CheckoutOverviewPage(driver);
     }
 
 
