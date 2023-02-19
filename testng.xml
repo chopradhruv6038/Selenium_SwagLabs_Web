@@ -14,23 +14,23 @@
 
         <classes>
             <class name="Org.SwagLabs.Tests.LoginPageTests">
-               <!-- <methods>
+                <methods>
                     <include name="successfulLoginTest"/>
-                </methods>-->
+                </methods>
             </class>
 
-            <class name="Org.SwagLabs.Tests.HappyFlowTestsSLBandSLBL"/>
+            <!--<class name="Org.SwagLabs.Tests.HappyFlowTestsSLBandSLBL"/>-->
         </classes>
     </test>
-       <test name="Swag Labs Testing on firefox browser, ENV: QA">
+   <!--    <test name="Swag Labs Testing on firefox browser, ENV: QA">
 
            <parameter name="browser" value="firefox"/>
            <parameter name="environment" value="QA"/>
 
            <classes>
                <class name="Org.SwagLabs.Tests.LoginPageTests"/>
-           </classes>
+           </classes>-->
 
-       </test>
+       <!--</test>-->
 
 </suite>

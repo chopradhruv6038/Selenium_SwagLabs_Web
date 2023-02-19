@@ -1,14 +1,22 @@
 package Org.SwagLabs.Pom;
 
 import Org.SwagLabs.Base.BasePage;
+import Org.SwagLabs.Base.BaseTest;
 import Org.SwagLabs.Components.MyHeader;
+import Org.SwagLabs.Utils.TestUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 public class LoginPage extends BasePage {
+
+    TestUtils utils = new TestUtils();
+
 
     protected MyHeader header;
 
@@ -27,7 +35,7 @@ public class LoginPage extends BasePage {
     //Methods: user actions
 
 
-    public void cpomponentCheck(){
+    public void cpomponentCheck() {
 
         header.ClickLasan();
         header.enterLasan("hello");
@@ -56,7 +64,6 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordFld)).sendKeys(password);
 
 
-
         return this;
     }
 
@@ -83,7 +90,9 @@ public class LoginPage extends BasePage {
 
         Assert.assertEquals(getErrorTextForInvalidUsrnmPasswd(), expectedTextForInvalidUserNamePasswd(text));
 
-        System.out.println("Actual error for invalid usernamePassword : " + getErrorTextForInvalidUsrnmPasswd() + "\nExpected error for invalid usernamePassword : " + expectedTextForInvalidUserNamePasswd(text));
+        utils.log().info("Actual error for invalid usernamePassword : " + getErrorTextForInvalidUsrnmPasswd() + "\nExpected error for invalid usernamePassword : " + expectedTextForInvalidUserNamePasswd(text));
+
+        //System.out.println("Actual error for invalid usernamePassword : " + getErrorTextForInvalidUsrnmPasswd() + "\nExpected error for invalid usernamePassword : " + expectedTextForInvalidUserNamePasswd(text));
 
     }
 
@@ -102,7 +111,8 @@ public class LoginPage extends BasePage {
 
         Assert.assertEquals(ActualLockedOutUserError(), expectedLockedOutUserError(text));
 
-        System.out.println("Actual error for locked out user : " + ActualLockedOutUserError() + "\nExpected error for locked out user : " + expectedLockedOutUserError(text));
+        utils.log().info("Actual error for locked out user : " + ActualLockedOutUserError() + "\nExpected error for locked out user : " + expectedLockedOutUserError(text));
+       // System.out.println("Actual error for locked out user : " + ActualLockedOutUserError() + "\nExpected error for locked out user : " + expectedLockedOutUserError(text));
 
         return this;
     }

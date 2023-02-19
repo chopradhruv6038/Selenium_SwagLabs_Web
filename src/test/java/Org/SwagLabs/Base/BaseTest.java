@@ -3,6 +3,8 @@ package Org.SwagLabs.Base;
 import Org.SwagLabs.Factory.DriverManager;
 import Org.SwagLabs.Utils.TestUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,13 +12,14 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
 public class BaseTest {
 
     protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
+    TestUtils utils = new TestUtils();
 
 
     protected static String dateTime; //Date time global variable.
@@ -36,7 +39,6 @@ public class BaseTest {
     @Parameters({"browser"})
     @BeforeMethod
     public void startDriver(String browser) {
-
 
         setDriver(new DriverManager().initializeDriver(browser));
 

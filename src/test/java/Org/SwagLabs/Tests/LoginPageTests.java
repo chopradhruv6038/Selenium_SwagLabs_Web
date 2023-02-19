@@ -4,6 +4,7 @@ import Org.SwagLabs.Base.BaseTest;
 import Org.SwagLabs.Pom.LoginPage;
 import Org.SwagLabs.Pom.ProductsPage;
 import Org.SwagLabs.Pom.YourCartPage;
+import Org.SwagLabs.Utils.TestUtils;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.annotations.BeforeClass;
@@ -21,6 +22,7 @@ public class LoginPageTests extends BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     YourCartPage yourCartPage;
+    TestUtils utils;
     InputStream datais;
     InputStream QAconfigData;
     InputStream StagingConfigData;
@@ -94,12 +96,13 @@ public class LoginPageTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         productsPage = new ProductsPage(getDriver());
         yourCartPage = new YourCartPage(getDriver());
+        utils = new TestUtils();
 
-        System.out.println("\n**** Login Page Tests, Method Name: " + m.getName() + " ****");
+        utils.log().info("\n**** Login Page Tests, Method Name: " + m.getName() + " ****");
 
-        System.out.println("\nCurrent Thread ID Login Page Tests : " + Thread.currentThread().getId() + "\n");
+        utils.log().info("\nCurrent Thread ID Login Page Tests : " + Thread.currentThread().getId() + "\n");
 
-        System.out.println("Driver : " + getDriver());
+        utils.log().info("Driver : " + getDriver());
 
     }
 
